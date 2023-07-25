@@ -9,15 +9,13 @@ volumes:
 services:
   postgres:
     image: postgres:13.10
-    networks:
-      - backend_db
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
   backend:
     image: maybeyolo/taski_backend
-    networks:
-      - backend_db
     env_file: .env
     volumes:
       - static_volume:/backend_static
@@ -34,8 +32,3 @@ services:
       - static_volume:/staticfiles/
     ports:
       - 8000:80
-
-networks:
-  backend_db:
-    # Use a custom driver
-    driver: custom-driver-1
