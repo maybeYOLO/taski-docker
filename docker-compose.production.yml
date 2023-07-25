@@ -30,7 +30,7 @@ services:
       - static_volume:/staticfiles/
     ports:
       - 8000:80
-  networks:
+networks:
   default:
     # Use a custom driver
     driver: custom-driver-1
