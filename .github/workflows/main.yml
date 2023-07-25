@@ -29,8 +29,8 @@ jobs:
           POSTGRES_USER: django_user
           POSTGRES_PASSWORD: mysecretpassword
           POSTGRES_DB: django
-        ports:
-          - 5433:5432
+        # ports:
+        # - 5433:5432
         # Эта конструкция описывает проверку готовности сервиса postgres
         # Если её не будет, то тесты могут запуститься раньше, чем сервер PostgreSQL
         # В результате тесты опять решат, что базы нет, — и упадут
