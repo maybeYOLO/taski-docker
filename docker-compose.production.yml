@@ -7,17 +7,17 @@ volumes:
 
 # Всё отличие — заменяем build на image и указываем, какой образ использовать
 services:
-  taski_db:
+  postgres:
     image: postgres:13.10
     networks:
-      - backend
+      - backend_db
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data
   backend:
     image: maybeyolo/taski_backend
     networks:
-      - backend
+      - backend_db
     env_file: .env
     volumes:
       - static_volume:/backend_static
@@ -34,8 +34,8 @@ services:
       - static_volume:/staticfiles/
     ports:
       - 8000:80
+
 networks:
-  backend:
+  backend_db:
     # Use a custom driver
     driver: custom-driver-1
-
